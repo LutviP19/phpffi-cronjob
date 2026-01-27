@@ -1,0 +1,5 @@
+{
+    "require": {
+        "phpstreamserver/scheduler": "^0.8.1"
+    }
+}
