@@ -1,9 +1,3 @@
-<?php 
-if (!defined('BASEPATH')) {
-    define('BASEPATH', __DIR__ . "/..");
-}
-?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -15,9 +9,6 @@ if (!defined('BASEPATH')) {
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 
-    <style>
-        [x-cloak] { display: none !important; }
-    </style>
     <style>
         /* Custom scrollbar untuk log agar serasi dengan dark mode */
         #log-container::-webkit-scrollbar {
@@ -59,7 +50,7 @@ if (!defined('BASEPATH')) {
                 </button>
             </div>
 
-            <!-- <nav class="mt-5 px-4 space-y-2">
+            <nav class="mt-5 px-4 space-y-2">
                 <a href="#" class="flex items-center px-4 py-2 bg-gray-900 text-white rounded-lg group">
                     <svg class="w-5 h-5 mr-3 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                     Dashboard
@@ -72,54 +63,53 @@ if (!defined('BASEPATH')) {
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     Settings
                 </a>
-            </nav> -->
-
-            <nav class="mt-10 px-4 space-y-2" x-data="{ activePage: 'dashboard' }">
-                <button 
-                    hx-get="router.php?page=dashboard" 
-                    hx-target="#main-content" 
-                    hx-push-url="true"
-                    @click="activePage = 'dashboard'; sidebarOpen = false"
-                    :class="activePage === 'dashboard' ? 'bg-indigo-600 text-white' : 'text-gray-400 hover:bg-gray-700/50'"
-                    class="w-full flex items-center px-4 py-3 rounded-lg group transition">
-                    <svg 
-                    :class="activePage === 'dashboard' ? 'text-indigo-400' : ''" 
-                    class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                    Dashboard
-                </button>
-
-                <button 
-                    hx-get="router.php?page=monitoring" 
-                    hx-target="#main-content" 
-                    hx-push-url="true"
-                    @click="activePage = 'monitoring'; sidebarOpen = false"
-                    :class="activePage === 'monitoring' ? 'bg-indigo-600 text-white' : 'text-gray-400 hover:bg-gray-700/50'"
-                    class="w-full flex items-center px-4 py-3 rounded-lg group transition">
-                    <svg 
-                    :class="activePage === 'monitoring' ? 'text-indigo-400' : ''" 
-                    class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 12h-4l-3 9L9 3l-3 9H2">
-                    </path></svg>
-                    Monitoring
-                </button>
-
-                <button 
-                    hx-get="router.php?page=settings" 
-                    hx-target="#main-content" 
-                    hx-push-url="true"
-                    @click="activePage = 'settings'; sidebarOpen = false"
-                    :class="activePage === 'settings' ? 'bg-indigo-600 text-white' : 'text-gray-400 hover:bg-gray-700/50'"
-                    class="w-full flex items-center px-4 py-3 rounded-lg group transition">
-                    <svg 
-                    :class="activePage === 'settings' ? 'text-indigo-400' : ''" 
-                    class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    Settings
-                </button>
             </nav>
         </aside>
 
         <main class="flex-1 p-6 overflow-y-auto bg-gray-900">
-            <div id="main-content" class="flex-1 overflow-y-auto p-8">
-                <?php include BASEPATH . "/views/dashboard.php"; // Load default saat pertama buka ?>
+            <div class="max-w-4xl mx-auto">
+                <header class="mb-8">
+                    <h1 class="text-3xl font-bold">System Log Monitoring</h1>
+                    <p class="text-gray-400 mt-2">Memantau eksekusi task scheduler secara real-time.</p>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                        <p class="text-sm text-gray-400">Total Run</p>
+                        <p class="text-2xl font-bold">1,284</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                        <p class="text-sm text-gray-400">Errors</p>
+                        <p class="text-2xl font-bold text-red-500">0</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                        <p class="text-sm text-gray-400">Next Sync</p>
+                        <p class="text-2xl font-bold text-indigo-400">05:00</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-xl border border-gray-700 shadow-2xl overflow-hidden">
+                    <div class="bg-gray-700 px-4 py-2 flex items-center space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="text-xs text-gray-400 ml-2 font-mono italic">cron_output.log</span>
+                    </div>
+                    
+                    <div id="log-container" 
+                         hx-get="get_logs.php" 
+                         hx-trigger="every 5s" 
+                         hx-swap="innerHTML"
+                         hx-on::after-settle="this.scrollTo({top: this.scrollHeight, behavior: 'smooth'})"
+                         class="h-96 overflow-y-auto p-4 font-mono text-sm text-green-400 leading-relaxed">
+                        <span class="animate-pulse">Menghubungkan ke stream server...</span>
+                    </div>
+                </div>
+
+                <div class="mt-4 flex justify-between items-center text-xs text-gray-500 uppercase tracking-widest">
+                    <span>Server: PHP 8.x + Tailwind + Alpine</span>
+                    <button class="hover:text-white transition">Clear Logs</button>
+                </div>
             </div>
         </main>
     </div>
