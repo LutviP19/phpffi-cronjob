@@ -23,6 +23,11 @@ Build shared Library:
 go build -buildmode=c-shared -o ./ffi/lib/concurrency.so ./ffi/source/concurrency.go
 go build -buildmode=c-shared -o ./ffi/lib/fibonacci.so ./ffi/source/fibonacci.go
 
+Header:
+ffi/lib/concurrency.h
+-------
+extern void ResizeImages(char** input, int count, char*** failedOut, int* failedCount);
+
 
 Test - Log:
 -----------
