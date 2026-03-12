@@ -11,7 +11,7 @@ if (!defined('BASEPATH')) {
 $logFile = BASEPATH . '/cron_log.txt'; // read logfile every 5 seconds
 if (file_exists($logFile)) {
     $content = file_get_contents($logFile) ?: 'Menunggu log...';
-    echo "<pre>" . nl2br(htmlspecialchars($content)) . "</pre>";
+    echo "<pre>" . htmlspecialchars($content) . "</pre>";
 } else {
     echo "Belum ada log.";
 }
